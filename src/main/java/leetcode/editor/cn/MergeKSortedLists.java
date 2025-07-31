@@ -26,27 +26,23 @@ public class MergeKSortedLists {
             return mergeKLists3(lists, 0, lists.length - 1);
         }
 
-        // 定义：合并 lists[start..end] 为一个有序链表
-        ListNode mergeKLists3(ListNode[] list, int start, int end) {
-            // 特殊判断
+        private ListNode mergeKLists3(ListNode[] lists, int start, int end) {
             if (start == end) {
-                return list[start];
+                return lists[start];
             }
             int mid = start + (end - start) / 2;
-            // 合并左半边 lists[start..mid] 为一个有序链表
-            ListNode left = mergeKLists3(list, start, mid);
-            // 合并右半边 lists[start..mid] 为一个有序链表
-            ListNode right = mergeKLists3(list, mid + 1, end);
-
-            // 合并左右两个有序链表
-            return mergeTwoLists(left, right);
+            ListNode left = mergeKLists3(lists, start, mid);
+            ListNode right = mergeKLists3(lists, mid + 1, end);
+            return mergeTwoList(left, right);
         }
 
-        // 双指针技巧合并两个有序链表
-        ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        private ListNode mergeTwoList(ListNode l1, ListNode l2) {
+            // create the dummy
             ListNode dummy = new ListNode(-1), p = dummy;
             ListNode p1 = l1, p2 = l2;
+            // loop and compare
             while (p1 != null && p2 != null) {
+                // compare
                 if (p1.val < p2.val) {
                     p.next = p1;
                     p1 = p1.next;
@@ -54,6 +50,7 @@ public class MergeKSortedLists {
                     p.next = p2;
                     p2 = p2.next;
                 }
+                // p -> next
                 p = p.next;
             }
             if (p1 != null) {
