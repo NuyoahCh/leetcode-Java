@@ -41,6 +41,7 @@ public class PartitionList {
                 }
                 // 断开原链表中的每个节点的 next 指针，防止成环
                 ListNode temp = p.next;
+                // 置为空
                 p.next = null;
                 p = temp;
             }

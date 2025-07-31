@@ -27,6 +27,7 @@ public class MergeTwoSortedLists {
 
             // 遍历比较
             while (p1 != null && p2 != null) {
+                // check and compare
                 if (p1.val < p2.val) {
                     p.next = p1;
                     p1 = p1.next;

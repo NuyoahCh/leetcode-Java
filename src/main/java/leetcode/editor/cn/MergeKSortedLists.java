@@ -26,16 +26,19 @@ public class MergeKSortedLists {
             return mergeKLists3(lists, 0, lists.length - 1);
         }
 
+        // 合并有序链表
         private ListNode mergeKLists3(ListNode[] lists, int start, int end) {
             if (start == end) {
                 return lists[start];
             }
+            // 二分查找
             int mid = start + (end - start) / 2;
             ListNode left = mergeKLists3(lists, start, mid);
             ListNode right = mergeKLists3(lists, mid + 1, end);
             return mergeTwoList(left, right);
         }
 
+        // 合并两个链表使其有序
         private ListNode mergeTwoList(ListNode l1, ListNode l2) {
             // create the dummy
             ListNode dummy = new ListNode(-1), p = dummy;
